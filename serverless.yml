@@ -31,7 +31,7 @@ functions:
     handler: handler.thumbnail_generator
     events:
       - s3:
-          bucket: image-thumbnail
+          bucket: image-thumbnail-woiehfwoeifh65463131635
           event: s3:ObjectCreated:*
           rules:
             - suffix: .png
