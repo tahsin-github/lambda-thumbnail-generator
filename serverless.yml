@@ -20,7 +20,21 @@ provider:
           Resource: '*'
           Action: 's3:*'
 
+custom:
+  bucket: image-thumbnail
+  pythonRequirements:
+    dockerizePip: true
+
 
 functions:
-  hello:
-    handler: handler.hello
+  s3-thumbnail-generator:
+    handler: handler.thumbnail_generator
+    events:
+      - s3:
+          bucket: ${self.custom.bucket}
+          event: s3:ObjectCreated:*
+          rules:
+            - suffix: .png
+
+plugins:
+  - serverless-python-requirements
