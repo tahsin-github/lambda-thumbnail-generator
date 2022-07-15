@@ -12,6 +12,8 @@ provider:
   environment:
     THUMBNAIL_SIZE: 128
     REGION_NAME: ${self.provider.region}
+  layers:
+  - arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p38-Pillow:3
 
   iam:
     role:
@@ -27,7 +29,7 @@ custom:
 
 
 functions:
-  s3-thumbnail-generator:
+  thumbnail_generator:
     handler: handler.thumbnail_generator
     events:
       - s3:
